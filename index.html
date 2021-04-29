@@ -28,7 +28,10 @@
       1. Calculate the length of the string
       2. add 0 in front of them for proper size of both using condition whichever is greater.
       3. now start from last digit and add it with another number's last digit also add carry and initialize it with zero
-      4. 
+      4. condition 
+            a. if total is greater then 9 then subtract it with 10 and intialize carry by 1
+            b. if it is less the 10. assign it in result by concataning previous one (it is string hence they will concatenate by + sign)
+      5. check for carry balance if exists then add one in front otherwise return it.
     */
 
   var addStrings = function (num1, num2) {
@@ -63,8 +66,13 @@
         carry = 0;
       }
     }
-    returnResult = carry ? "1" + result : result;
-    console.log(typeof returnResult);
+    if (carry) {
+      returnResult = "1" + result;
+    } else {
+      returnResult = result;
+    }
+
+    //console.log(typeof returnResult);
     return returnResult;
   };
 
