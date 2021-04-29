@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String number addition</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  //Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
+  /*Requirement:-
+   * Add two numbers, both will be positive always, can go upto 10^4, no leading zeros, not usingg BigInteger.
+   */
+
+  /*
+    *   Psudo code:-
+            1. function have two string parameter in number
+            2. convert them into int using parseInt
+            3. add them
+            4. convert back into string using toString()
+    */
+
+  /*
+    *Psudo code:-
+      1. Calculate the length of the string
+      2. add 0 in front of them for proper size of both using condition whichever is greater.
+      3. now start from last digit and add it with another number's last digit also add carry and initialize it with zero
+      4. 
+    */
+
+  var addStrings = function (num1, num2) {
+    let result = "";
+    let carry = 0;
+    let returnResult;
+    const l1 = num1.length;
+    const l2 = num2.length;
+
+    if (l1 > l2) {
+      for (var i = 0; i < l1 - l2; i++) {
+        num2 = "0" + num2;
+      }
+    }
+    if (l2 > l1) {
+      for (var i = 0; i < l2 - l1; i++) {
+        num1 = "0" + num1;
+      }
+    }
+
+    for (var i = num1.length - 1; i >= 0; i--) {
+      const number1 = num1[i];
+      const number2 = num2[i];
+
+      const sum = parseInt(number1) + parseInt(number2) + carry;
+
+      if (sum > 9) {
+        result = sum - 10 + result;
+        carry = 1;
+      } else {
+        result = sum + result;
+        carry = 0;
+      }
+    }
+    returnResult = carry ? "1" + result : result;
+    console.log(typeof returnResult);
+    return returnResult;
+  };
+
+  console.log(addStrings("123888887777", "1888888"));
+
+  ///Giving result right upto 20 character
+</script>
